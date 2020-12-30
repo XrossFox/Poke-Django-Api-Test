@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from trainer.views import TrainerCreate, TrainerGetUpdateDestroy
+from teams.views import TeamCreate, TeamGetUpdateDestroy
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +24,7 @@ urlpatterns = [
     path('trainer/delete/<int:pk>/', TrainerGetUpdateDestroy.as_view()),
     path('trainer/get/<int:pk>/', TrainerGetUpdateDestroy.as_view()),
     path('trainer/update/<int:pk>/', TrainerGetUpdateDestroy.as_view()),
+    path('team/create/', TeamCreate.as_view()),
+    path('team/delete/<int:pk>/', TeamGetUpdateDestroy.as_view()),
+    path('team/get/<int:pk>/', TeamGetUpdateDestroy.as_view()),
 ]
