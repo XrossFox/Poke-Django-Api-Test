@@ -30,6 +30,25 @@ A Pokemon team management API to test Django Rest Framework
     "code": "200"
     }
 
+    {
+    "path": "teams/create/",
+    "Method": "POST",
+    "body": {"trainer":"int"},
+    "code": "201"
+    }
+
+    {
+    "path": "teams/get/<int:pk>",
+    "Method": "GET",
+    "code": "200"
+    }
+
+    {
+    "path": "teams/delete/<int:pk>",
+    "Method": "DELETE",
+    "code": "204"
+    }
+
 ```
 
 ## Setting Up:

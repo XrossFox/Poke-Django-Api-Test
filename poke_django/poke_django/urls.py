@@ -24,7 +24,7 @@ urlpatterns = [
     path('trainer/delete/<int:pk>/', TrainerGetUpdateDestroy.as_view()),
     path('trainer/get/<int:pk>/', TrainerGetUpdateDestroy.as_view()),
     path('trainer/update/<int:pk>/', TrainerGetUpdateDestroy.as_view()),
-    path('team/create/', TeamCreate.as_view()),
-    path('team/delete/<int:pk>/', TeamGetUpdateDestroy.as_view()),
-    path('team/get/<int:pk>/', TeamGetUpdateDestroy.as_view()),
+    path('teams/create/', TeamCreate.as_view()),
+    path('teams/delete/<int:pk>/', TeamGetUpdateDestroy.as_view()),
+    path('teams/get/<int:pk>/', TeamGetUpdateDestroy.as_view()),
 ]
