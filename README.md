@@ -52,8 +52,9 @@ A Pokemon team management API to test Django Rest Framework
 ```
 
 ## Setting Up:
-- Install MySQL Server
+- Install MySQL Server, Django and Django Rest Framework.
 - Install Python dependencies for MySQL: `pip install mysql-connector-python` and `pip install mysqlclient`.
+- Install Python dependency for pokeApi python wrapper: `pip install pokebase`.
 - Setup DB credentials in `Settings.py` in DB section.
 - Run migrations: `py manage.py makemigrations` (make sure the DB exists in MySQL server: `pokemon_trainers`)
 
