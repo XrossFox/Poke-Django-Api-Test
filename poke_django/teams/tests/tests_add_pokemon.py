@@ -41,7 +41,7 @@ class TeamAddPokemonTestCase(TestCase):
                                                     })
 
         self.assertEqual(response.status_code, 201)
-        poke = Team.objects.get(pk=self.team_id)
+        poke = Team.objects.get(pk=team_pk)
         self.assertEqual(poke.slot_1_national_dex_id, national_dex_id)
         self.assertEqual(poke.slot_1_name, pokemon_name.lower())
         self.assertEqual(poke.slot_1_type_primary, type_1)
@@ -69,8 +69,31 @@ class TeamAddPokemonTestCase(TestCase):
                                                     })
 
         self.assertEqual(response.status_code, 201)
-        poke = Team.objects.get(pk=self.team_id)
+        poke = Team.objects.get(pk=team_pk)
         self.assertEqual(poke.slot_1_national_dex_id, national_dex_id)
         self.assertEqual(poke.slot_1_name, pokemon_name.lower())
         self.assertEqual(poke.slot_1_type_primary, type_1)
         self.assertEqual(poke.slot_1_type_secondary, type_2)
+
+    def test_add_pokemon_slot_1_not_exist(self):
+        """
+        tries to add a pokemon that doesn't exist. A Not Found error is expected.
+        """
+        response = self.client.post("/teams/create/",
+        {
+            "trainer": str(self.trainer_id),
+        })
+        team_pk = response.json()["id"]
+        slot = 1
+        pokemon_name = "Agumon"
+        #national_dex_id = None
+        #type_1 = "Rookie"
+        #type_2 = "Virus"
+
+        response = self.client.post("/teams/add/", {
+                                                    "id":str(team_pk),
+                                                    "slot": str(slot),
+                                                    "pokemon_name": pokemon_name,
+                                                    })
+
+        self.assertEqual(response.status_code, 404)
