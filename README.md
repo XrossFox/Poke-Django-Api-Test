@@ -49,6 +49,18 @@ A Pokemon team management API to test Django Rest Framework
     "code": "204"
     }
 
+    {
+    "path": "teams/add/",
+    "Method": "POST",
+    "Description": "Adds a pokemon to the designated slot. Can replace an already existing pokemon",
+    "body": {
+        "id": "<int>|<string>",
+        "slot": "<int>|<string>",
+        "pokemon_name": "moltres",
+        },
+    "code": "201"
+    }
+
 ```
 
 ## Setting Up:
