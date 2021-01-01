@@ -86,9 +86,6 @@ class TeamAddPokemonTestCase(TestCase):
         team_pk = response.json()["id"]
         slot = 1
         pokemon_name = "Agumon"
-        #national_dex_id = None
-        #type_1 = "Rookie"
-        #type_2 = "Virus"
 
         response = self.client.post("/teams/add/", {
                                                     "id":str(team_pk),
@@ -165,9 +162,6 @@ class TeamAddPokemonTestCase(TestCase):
         team_pk = response.json()["id"]
         slot = 2
         pokemon_name = "Gabumon"
-        #national_dex_id = None
-        #type_1 = "Rookie"
-        #type_2 = "Virus"
 
         response = self.client.post("/teams/add/", {
                                                     "id":str(team_pk),
@@ -244,9 +238,6 @@ class TeamAddPokemonTestCase(TestCase):
         team_pk = response.json()["id"]
         slot = 3
         pokemon_name = "Patamon"
-        #national_dex_id = None
-        #type_1 = "Rookie"
-        #type_2 = "Virus"
 
         response = self.client.post("/teams/add/", {
                                                     "id":str(team_pk),
@@ -323,9 +314,6 @@ class TeamAddPokemonTestCase(TestCase):
         team_pk = response.json()["id"]
         slot = 4
         pokemon_name = "Patamon"
-        #national_dex_id = None
-        #type_1 = "Rookie"
-        #type_2 = "Virus"
 
         response = self.client.post("/teams/add/", {
                                                     "id":str(team_pk),
@@ -402,9 +390,6 @@ class TeamAddPokemonTestCase(TestCase):
         team_pk = response.json()["id"]
         slot = 5
         pokemon_name = "Patamon"
-        #national_dex_id = None
-        #type_1 = "Rookie"
-        #type_2 = "Virus"
 
         response = self.client.post("/teams/add/", {
                                                     "id":str(team_pk),
@@ -413,7 +398,7 @@ class TeamAddPokemonTestCase(TestCase):
                                                     })
 
         self.assertEqual(response.status_code, 404)
-        
+
     def test_add_pokemon_slot_6_1_type(self):
         """
         Adds a new pokemon to Slot 6. Expected code: 201.
@@ -481,9 +466,6 @@ class TeamAddPokemonTestCase(TestCase):
         team_pk = response.json()["id"]
         slot = 6
         pokemon_name = "Patamon"
-        #national_dex_id = None
-        #type_1 = "Rookie"
-        #type_2 = "Virus"
 
         response = self.client.post("/teams/add/", {
                                                     "id":str(team_pk),
