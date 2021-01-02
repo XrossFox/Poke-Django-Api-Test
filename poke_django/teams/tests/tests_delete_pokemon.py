@@ -22,6 +22,7 @@ class TeamDeletePokemonTestCase(TestCase):
     def test_delete_pokemon_slot_1(self):
         """
         Deletes a pokemon from the designated team in slot 1.
+        Please note that "Team matching query does not exist messages" in console are normal.
         """
         response = self.client.post("/teams/create/",
         {
@@ -56,6 +57,7 @@ class TeamDeletePokemonTestCase(TestCase):
         """
         Tries to delete a pokemon from the designated team in slot 1. The team doesn't
         exists, Not Found error expected.
+        Please note that "Team matching query does not exist messages" in console are normal.
         """
         team_pk = "155555"
         slot = 1
@@ -81,6 +83,7 @@ class TeamDeletePokemonTestCase(TestCase):
     def test_delete_pokemon_slot_2(self):
         """
         Deletes a pokemon from the designated team in slot 2.
+        Please note that "Team matching query does not exist messages" in console are normal.
         """
         response = self.client.post("/teams/create/",
         {
@@ -140,6 +143,7 @@ class TeamDeletePokemonTestCase(TestCase):
     def test_delete_pokemon_slot_3(self):
         """
         Deletes a pokemon from the designated team in slot 3.
+        Please note that "Team matching query does not exist messages" in console are normal.
         """
         response = self.client.post("/teams/create/",
         {
@@ -199,6 +203,7 @@ class TeamDeletePokemonTestCase(TestCase):
     def test_delete_pokemon_slot_4(self):
         """
         Deletes a pokemon from the designated team in slot 4.
+        Please note that "Team matching query does not exist messages" in console are normal.
         """
         response = self.client.post("/teams/create/",
         {
@@ -258,6 +263,7 @@ class TeamDeletePokemonTestCase(TestCase):
     def test_delete_pokemon_slot_5(self):
         """
         Deletes a pokemon from the designated team in slot 5.
+        Please note that "Team matching query does not exist messages" in console are normal.
         """
         response = self.client.post("/teams/create/",
         {
@@ -317,6 +323,7 @@ class TeamDeletePokemonTestCase(TestCase):
     def test_delete_pokemon_slot_6(self):
         """
         Deletes a pokemon from the designated team in slot 6.
+        Please note that "Team matching query does not exist messages" in console are normal.
         """
         response = self.client.post("/teams/create/",
         {

@@ -25,7 +25,7 @@ class TeamTestCase(TestCase):
         Creates a new team for the trainer. Asserts that
         the team is created.
         """
-        response = self.client.post("/teams/create/", 
+        response = self.client.post("/teams/create/",
         {
             "trainer": str(self.trainer_id),
         })
@@ -41,8 +41,8 @@ class TeamTestCase(TestCase):
         Tries to create a team with an empty json.
         Expects a bad request error.
         """
-        response = self.client.post("/teams/create/", 
-        {   
+        response = self.client.post("/teams/create/",
+        {
         })
 
         self.assertEqual(response.status_code, 400)
@@ -52,8 +52,8 @@ class TeamTestCase(TestCase):
         Tries to create a team with bad data.
         Expects a bad request error.
         """
-        response = self.client.post("/teams/create/", 
-        {   
+        response = self.client.post("/teams/create/",
+        {
             "Pokemon_Master": str(self.trainer_id),
         })
 
@@ -64,7 +64,7 @@ class TeamTestCase(TestCase):
         Tries to create a team with a trainer that doesn't
         exists. Expects a bad request error.
         """
-        response = self.client.post("/teams/create/", 
+        response = self.client.post("/teams/create/",
         {
             "trainer": "2",
         })
@@ -76,7 +76,7 @@ class TeamTestCase(TestCase):
         Retrieves a team using the team pk. Expects
         a 200 code.
         """
-        response = self.client.post("/teams/create/", 
+        response = self.client.post("/teams/create/",
         {
             "trainer": str(self.trainer_id),
         })
@@ -112,7 +112,7 @@ class TeamTestCase(TestCase):
         """
         Deletes an existing team. Code 204 expected
         """
-        response = self.client.post("/teams/create/", 
+        response = self.client.post("/teams/create/",
         {
             "trainer": str(self.trainer_id),
         })

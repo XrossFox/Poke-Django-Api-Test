@@ -27,15 +27,16 @@ class DeletePokemonFromTeam(APIView):
     """
     Custom view for deleting pokemons from teams.
     """
-    def delete(self, request, pk, slot):
+    def delete(self, request, _pk, slot):
         """
         Delete method. Deletes the pokemon in the specified slot, from the
         specified team by the pk.
         """
         team = None
         try:
-            team = Team.objects.get(pk=pk)
-        except:
+            team = Team.objects.get(pk=_pk)
+        except ObjectDoesNotExist as _e:
+            print(_e)
             return Response("Team not found", status=status.HTTP_404_NOT_FOUND)
 
         team = self._clear_pokemon_slot(team, slot)
@@ -70,7 +71,7 @@ class DeletePokemonFromTeam(APIView):
             model_instance.slot_1_type_move_4 = None
             return model_instance
 
-        elif str(slot) == "2":
+        if str(slot) == "2":
             # none is falsy
             if not model_instance.slot_2_name:
                 return model_instance
@@ -88,7 +89,7 @@ class DeletePokemonFromTeam(APIView):
             model_instance.slot_2_type_move_4 = None
             return model_instance
 
-        elif str(slot) == "3":
+        if str(slot) == "3":
             # none is falsy
             if not model_instance.slot_3_name:
                 return model_instance
@@ -106,7 +107,7 @@ class DeletePokemonFromTeam(APIView):
             model_instance.slot_3_type_move_4 = None
             return model_instance
 
-        elif str(slot) == "4":
+        if str(slot) == "4":
             # none is falsy
             if not model_instance.slot_4_name:
                 return model_instance
@@ -124,7 +125,7 @@ class DeletePokemonFromTeam(APIView):
             model_instance.slot_4_type_move_4 = None
             return model_instance
 
-        elif str(slot) == "5":
+        if str(slot) == "5":
             # none is falsy
             if not model_instance.slot_5_name:
                 return model_instance
@@ -142,7 +143,7 @@ class DeletePokemonFromTeam(APIView):
             model_instance.slot_5_type_move_4 = None
             return model_instance
 
-        elif str(slot) == "6":
+        if str(slot) == "6":
             # none is falsy
             if not model_instance.slot_6_name:
                 return model_instance
@@ -159,7 +160,7 @@ class DeletePokemonFromTeam(APIView):
             model_instance.slot_6_type_move_3 = None
             model_instance.slot_6_type_move_4 = None
             return model_instance
-        
+
         return model_instance
 
 class AddPokemonToTeam(APIView):
@@ -175,14 +176,18 @@ class AddPokemonToTeam(APIView):
         """
         try:
             team = Team.objects.get(pk=request.data.get("id"))
-        except:
+        except ObjectDoesNotExist as _e:
+            print(_e)
             return Response("Team not found", status=status.HTTP_404_NOT_FOUND)
         pokemon = pb.pokemon(request.data.get("pokemon_name").lower())
 
         if not pokemon.id_:
             return Response("This pokemon doesn't exist", status=status.HTTP_404_NOT_FOUND)
 
-        team = self._add_to_slot(team, pokemon, request.data.get("slot"))
+        try:
+            team = self._add_to_slot(team, pokemon, request.data.get("slot"))
+        except IndexError as _e:
+            print(_e)
 
         team.save()
         serializer = GetUpdateDestroyTeamSerializer(team)
@@ -217,7 +222,7 @@ class AddPokemonToTeam(APIView):
             model_instance.slot_1_type_move_4 = random.choice(pokemon.moves).move.name
             return model_instance
 
-        elif str(slot) == "2":
+        if str(slot) == "2":
             model_instance.slot_2_name = pokemon.name
 
             if len(pokemon.types) < 2:
@@ -236,7 +241,7 @@ class AddPokemonToTeam(APIView):
             model_instance.slot_2_type_move_4 = random.choice(pokemon.moves).move.name
             return model_instance
 
-        elif str(slot) == "3":
+        if str(slot) == "3":
             model_instance.slot_3_name = pokemon.name
 
             if len(pokemon.types) < 2:
@@ -255,7 +260,7 @@ class AddPokemonToTeam(APIView):
             model_instance.slot_3_type_move_4 = random.choice(pokemon.moves).move.name
             return model_instance
 
-        elif str(slot) == "4":
+        if str(slot) == "4":
             model_instance.slot_4_name = pokemon.name
 
             if len(pokemon.types) < 2:
@@ -274,7 +279,7 @@ class AddPokemonToTeam(APIView):
             model_instance.slot_4_type_move_4 = random.choice(pokemon.moves).move.name
             return model_instance
 
-        elif str(slot) == "5":
+        if str(slot) == "5":
             model_instance.slot_5_name = pokemon.name
 
             if len(pokemon.types) < 2:
@@ -293,7 +298,7 @@ class AddPokemonToTeam(APIView):
             model_instance.slot_5_type_move_4 = random.choice(pokemon.moves).move.name
             return model_instance
 
-        elif str(slot) == "6":
+        if str(slot) == "6":
             model_instance.slot_6_name = pokemon.name
 
             if len(pokemon.types) < 2:
@@ -312,8 +317,7 @@ class AddPokemonToTeam(APIView):
             model_instance.slot_6_type_move_4 = random.choice(pokemon.moves).move.name
             return model_instance
 
-        else:
-            raise Exception("Check your slot, pal")
+        raise IndexError("Slot can only be between 1 and 6")
 
 class GetallTeams(APIView):
     """

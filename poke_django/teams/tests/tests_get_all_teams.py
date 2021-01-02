@@ -66,7 +66,7 @@ class GetallTeamsPokemonTestCase(TestCase):
 
     def test_getall_teams_trainer_has_multiple_teams(self):
         """
-        When sending a request with an id of a trainer that has multiple teams, a 
+        When sending a request with an id of a trainer that has multiple teams, a
         response with multiple teams, one in each index is expected and a status code 200.
         """
         response = self.client.get("/teams/getall/{}/".format(self.trainer_id_2))

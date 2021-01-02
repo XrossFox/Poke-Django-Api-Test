@@ -57,10 +57,11 @@ class TrainerTestCase(TestCase):
         # create trainer
         client = APIClient()
         response = client.post('/trainer/create/', {"name":"Roberto", "last_name":"Perez"})
+        _pk = response.json()["id"]
         self.assertEqual(response.status_code, 201)
 
         # Delete trainer
-        response = client.delete('/trainer/delete/4/')
+        response = client.delete('/trainer/delete/{}/'.format(_pk))
         self.assertEqual(response.status_code, 204)
 
         # if trainer has been deleted, then when trying
@@ -83,7 +84,8 @@ class TrainerTestCase(TestCase):
         """
         client = APIClient()
         response = client.post('/trainer/create/', {"name":"Roberto", "last_name":"Perez"})
-        response = client.get('/trainer/get/5/')
+        _pk = response.json()["id"]
+        response = client.get('/trainer/get/{}/'.format(_pk))
         self.assertEqual(response.status_code, 200)
 
         trainer = Trainer.objects.get(name="Roberto")
@@ -105,10 +107,12 @@ class TrainerTestCase(TestCase):
         """
         client = APIClient()
         response = client.post('/trainer/create/', {"name":"Roberto", "last_name":"Perez"})
-        response = client.put('/trainer/update/6/', {"name":"Jose", "last_name":"Gonzalez"})
+        _pk = response.json()["id"]
+        response = client.put('/trainer/update/{}/'.format(_pk),
+                                {"name":"Jose", "last_name":"Gonzalez"})
         self.assertEqual(response.status_code, 200)
 
-        trainer = Trainer.objects.get(pk=6)
+        trainer = Trainer.objects.get(pk=_pk)
         self.assertEqual(trainer.name, "Jose")
         self.assertEqual(trainer.last_name, "Gonzalez")
         trainer.delete()
@@ -145,4 +149,3 @@ class TrainerTestCase(TestCase):
         self.assertEqual(trainer.name, "Roberto")
         self.assertEqual(trainer.last_name, "Perez")
         trainer.delete()
-
