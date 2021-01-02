@@ -8,39 +8,62 @@ A Pokemon team management API to test Django Rest Framework
     "path": "trainer/create/",
     "Method": "POST",
     "body": {"name":"string", "last_name":"string"},
-    "code": "201"
+    "code": "201",
+    "Expected response": {
+        "id": "<int>",
+        "name": "<string>",
+        "last_name": "<string>",
+    }
     }
 
     {
     "path": "trainer/delete/<int:pk>/",
     "Method": "DELETE",
-    "code": "204"
+    "code": "204",
     }
 
     {
     "path": "trainer/get/<int:pk>/",
     "Method": "GET",
-    "code": "200"
+    "code": "200",
+    "Expected response": {
+        "id": "<int>",
+        "name": "<string>",
+        "last_name": "<string>",
+    }
     }
 
     {
     "path": "trainer/update/<int:pk>/",
     "Method": "PUT",
     "body": {"name":"string", "last_name":"string"},
-    "code": "200"
+    "code": "200",
+    "Expected response": {
+        "id": "<int>",
+        "name": "<string>",
+        "last_name": "<string>",
+    }
     }
 
     {
     "path": "teams/create/",
     "Method": "POST",
     "body": {"trainer":"int"},
-    "code": "201"
+    "code": "201",
+    "Expected response": {
+        "id": "<int>",
+        "trainer": "<string>",
+    }
     }
 
     {
     "path": "teams/get/<int:pk>",
     "Method": "GET",
-    "code": "200"
+    "code": "200",
+    "Expected response": {
+        "id": "<int>",
+        "trainer": "<string>",
+    }
     }
 
     {
@@ -58,7 +81,22 @@ A Pokemon team management API to test Django Rest Framework
         "slot": "<int>|<string>",
         "pokemon_name": "moltres",
         },
-    "code": "201"
+    "code": "201",
+    "Expected response": {
+        "id": "<int>",
+        "trainer": "<string>",
+        "slot_n_national_dex_id": "<int>",
+        "slot_n_name":"<string>",
+        "slot_n_type_primary":"<string>",
+        "slot_n_type_secondary":"<string>",
+        "slot_n_type_species": "<string>",
+        "slot_n_type_height": "<int>",
+        "slot_n_type_weight": "<int>",
+        "slot_n_type_move_1": "<string>",
+        "slot_n_type_move_2": "<string>",
+        "slot_n_type_move_3": "<string>",
+        "slot_n_type_move_4":"<string>",
+    }
     }
     
     {
@@ -72,7 +110,24 @@ A Pokemon team management API to test Django Rest Framework
     "path": "teams/getall/<int:id>/",
     "Method": "GET",
     "Description": "Gets all teams belonging to a trainer id",
-    "code": "200"
+    "code": "200",
+    "Expected response":[
+            {
+            "id": "<int>",
+            "trainer": "<string>",
+            "slot_n_national_dex_id": "<int>",
+            "slot_n_name":"<string>",
+            "slot_n_type_primary":"<string>",
+            "slot_n_type_secondary":"<string>",
+            "slot_n_type_species": "<string>",
+            "slot_n_type_height": "<int>",
+            "slot_n_type_weight": "<int>",
+            "slot_n_type_move_1": "<string>",
+            "slot_n_type_move_2": "<string>",
+            "slot_n_type_move_3": "<string>",
+            "slot_n_type_move_4":"<string>",
+            },
+        ]
     }
 
 ```
