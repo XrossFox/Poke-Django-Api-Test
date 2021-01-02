@@ -68,6 +68,13 @@ A Pokemon team management API to test Django Rest Framework
     "code": "204"
     }
 
+    {
+    "path": "teams/getall/<int:id>/",
+    "Method": "GET",
+    "Description": "Gets all teams belonging to a trainer id",
+    "code": "200"
+    }
+
 ```
 
 ## Setting Up:

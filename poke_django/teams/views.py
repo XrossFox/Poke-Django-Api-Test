@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from teams.models import Team
 from teams.serializers import CreateTeamSerializer, GetUpdateDestroyTeamSerializer
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 class TeamCreate(generics.ListCreateAPIView):
@@ -313,3 +314,20 @@ class AddPokemonToTeam(APIView):
 
         else:
             raise Exception("Check your slot, pal")
+
+class GetallTeams(APIView):
+    """
+    APIView for getall endpoint. Returns all teams belonging to a given trainer.
+    """
+
+    def get(self, request, _id):
+        """
+        GET Method returns all teams belonging to specified trainer by id.
+        """
+        teams = Team.objects.filter(trainer=_id)
+
+        if not teams:
+            return Response({"message": "No teams found"}, status=status.HTTP_204_NO_CONTENT)
+
+        serializer = GetUpdateDestroyTeamSerializer(teams, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
