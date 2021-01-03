@@ -100,7 +100,7 @@ A Pokemon team management API to test Django Rest Framework
     }
     
     {
-    "path": "teams/delete/<int:id>/<int:slot>/",
+    "path": "teams/deletepokemon/<int:id>/<int:slot>/",
     "Method": "POST",
     "Description": "Removes a pokemon from the specified team and specified slot",
     "code": "204"

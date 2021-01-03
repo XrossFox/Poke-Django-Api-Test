@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from teams.models import Team
+from teams.models import Team, Pokemon
 
 class CreateTeamSerializer(ModelSerializer):
     """
@@ -10,79 +10,47 @@ class CreateTeamSerializer(ModelSerializer):
         fields = ['id',
         'trainer',]
 
+class PokemonSerializer(ModelSerializer):
+    """
+    Serializer for Pokemon model representation.
+    """
+    class Meta:
+        model = Pokemon
+        fields = [
+            "team_id",
+            "national_dex_id",
+            "name",
+            "type_primary",
+            "type_secondary",
+            "species",
+            "height",
+            "weight",
+            "move_1",
+            "move_2",
+            "move_3",
+            "move_4",
+        ]
+
 class GetUpdateDestroyTeamSerializer(ModelSerializer):
     """
     Serializer for everything else #YOLO
     """
+    slot_1_pokemon = PokemonSerializer(read_only=True)
+    slot_2_pokemon = PokemonSerializer(read_only=True)
+    slot_3_pokemon = PokemonSerializer(read_only=True)
+    slot_4_pokemon = PokemonSerializer(read_only=True)
+    slot_5_pokemon = PokemonSerializer(read_only=True)
+    slot_6_pokemon = PokemonSerializer(read_only=True)
+
     class Meta:
         model = Team
         fields = [
         'id',
         'trainer',
-        'slot_1_national_dex_id',
-        'slot_1_name',
-        'slot_1_type_primary',
-        'slot_1_type_secondary',
-        'slot_1_type_species',
-        'slot_1_type_height',
-        'slot_1_type_weight',
-        'slot_1_type_move_1',
-        'slot_1_type_move_2',
-        'slot_1_type_move_3',
-        'slot_1_type_move_4',
-        'slot_2_national_dex_id',
-        'slot_2_name',
-        'slot_2_type_primary',
-        'slot_2_type_secondary',
-        'slot_2_type_species',
-        'slot_2_type_height',
-        'slot_2_type_weight',
-        'slot_2_type_move_1',
-        'slot_2_type_move_2',
-        'slot_2_type_move_3',
-        'slot_2_type_move_4',
-        'slot_3_national_dex_id',
-        'slot_3_name',
-        'slot_3_type_primary',
-        'slot_3_type_secondary',
-        'slot_3_type_species',
-        'slot_3_type_height',
-        'slot_3_type_weight',
-        'slot_3_type_move_1',
-        'slot_3_type_move_2',
-        'slot_3_type_move_3',
-        'slot_3_type_move_4',
-        'slot_4_national_dex_id',
-        'slot_4_name',
-        'slot_4_type_primary',
-        'slot_4_type_secondary',
-        'slot_4_type_species',
-        'slot_4_type_height',
-        'slot_4_type_weight',
-        'slot_4_type_move_1',
-        'slot_4_type_move_2',
-        'slot_4_type_move_3',
-        'slot_4_type_move_4',
-        'slot_5_national_dex_id',
-        'slot_5_name',
-        'slot_5_type_primary',
-        'slot_5_type_secondary',
-        'slot_5_type_species',
-        'slot_5_type_height',
-        'slot_5_type_weight',
-        'slot_5_type_move_1',
-        'slot_5_type_move_2',
-        'slot_5_type_move_3',
-        'slot_5_type_move_4',
-        'slot_6_national_dex_id',
-        'slot_6_name',
-        'slot_6_type_primary',
-        'slot_6_type_secondary',
-        'slot_6_type_species',
-        'slot_6_type_height',
-        'slot_6_type_weight',
-        'slot_6_type_move_1',
-        'slot_6_type_move_2',
-        'slot_6_type_move_3',
-        'slot_6_type_move_4',
+        'slot_1_pokemon',
+        'slot_2_pokemon',
+        'slot_3_pokemon',
+        'slot_4_pokemon',
+        'slot_5_pokemon',
+        'slot_6_pokemon',
         ]

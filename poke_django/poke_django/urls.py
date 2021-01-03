@@ -29,6 +29,6 @@ urlpatterns = [
     path('teams/delete/<int:pk>/', TeamGetUpdateDestroy.as_view()),
     path('teams/get/<int:pk>/', TeamGetUpdateDestroy.as_view()),
     path('teams/add/', AddPokemonToTeam.as_view()),
-    path('teams/delete/<int:_pk>/<int:slot>/', DeletePokemonFromTeam.as_view()),
+    path('teams/deletepokemon/<int:_pk>/<int:slot>/', DeletePokemonFromTeam.as_view()),
     path('teams/getall/<int:_id>/', GetallTeams.as_view()),
 ]
