@@ -4,8 +4,8 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from teams.models import Team
-from teams.serializers import CreateTeamSerializer, GetUpdateDestroyTeamSerializer
+from teams.models import Team, Pokemon
+from teams.serializers import CreateTeamSerializer, GetUpdateDestroyTeamSerializer, PokemonSerializer
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
@@ -15,6 +15,13 @@ class TeamCreate(generics.ListCreateAPIView):
     """
     queryset = Team.objects.all()
     serializer_class = CreateTeamSerializer
+
+class GetPokemon(generics.RetrieveAPIView):
+    """
+    Generic view for creating a Trainer.
+    """
+    queryset = Pokemon.objects.all()
+    serializer_class = PokemonSerializer
 
 class TeamGetUpdateDestroy(generics.RetrieveDestroyAPIView):
     """
@@ -41,12 +48,11 @@ class DeletePokemonFromTeam(APIView):
 
         team = self._clear_pokemon_slot(team, slot)
         team.save()
-
         serializer = GetUpdateDestroyTeamSerializer(team)
         if serializer.is_valid:
             return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def _clear_pokemon_slot(self, model_instance, slot):
         """
@@ -54,111 +60,39 @@ class DeletePokemonFromTeam(APIView):
         is already empty, returns the models as is.
         """
         if str(slot) == "1":
-            # none is falsy
-            if not model_instance.slot_1_name:
-                return model_instance
-
-            model_instance.slot_1_name = None
-            model_instance.slot_1_type_primary = None
-            model_instance.slot_1_type_secondary = None
-            model_instance.slot_1_national_dex_id = None
-            model_instance.slot_1_type_species = None
-            model_instance.slot_1_type_height = None
-            model_instance.slot_1_type_weight = None
-            model_instance.slot_1_type_move_1 = None
-            model_instance.slot_1_type_move_2 = None
-            model_instance.slot_1_type_move_3 = None
-            model_instance.slot_1_type_move_4 = None
+            if model_instance.slot_1_pokemon:
+                model_instance.slot_1_pokemon.delete()
+                model_instance.slot_1_pokemon = None
             return model_instance
 
-        if str(slot) == "2":
-            # none is falsy
-            if not model_instance.slot_2_name:
-                return model_instance
-
-            model_instance.slot_2_name = None
-            model_instance.slot_2_type_primary = None
-            model_instance.slot_2_type_secondary = None
-            model_instance.slot_2_national_dex_id = None
-            model_instance.slot_2_type_species = None
-            model_instance.slot_2_type_height = None
-            model_instance.slot_2_type_weight = None
-            model_instance.slot_2_type_move_1 = None
-            model_instance.slot_2_type_move_2 = None
-            model_instance.slot_2_type_move_3 = None
-            model_instance.slot_2_type_move_4 = None
+        elif str(slot) == "2":
+            if model_instance.slot_2_pokemon:
+                model_instance.slot_2_pokemon.delete()
+                model_instance.slot_2_pokemon = None
             return model_instance
 
-        if str(slot) == "3":
-            # none is falsy
-            if not model_instance.slot_3_name:
-                return model_instance
-
-            model_instance.slot_3_name = None
-            model_instance.slot_3_type_primary = None
-            model_instance.slot_3_type_secondary = None
-            model_instance.slot_3_national_dex_id = None
-            model_instance.slot_3_type_species = None
-            model_instance.slot_3_type_height = None
-            model_instance.slot_3_type_weight = None
-            model_instance.slot_3_type_move_1 = None
-            model_instance.slot_3_type_move_2 = None
-            model_instance.slot_3_type_move_3 = None
-            model_instance.slot_3_type_move_4 = None
+        elif str(slot) == "3":
+            if model_instance.slot_3_pokemon:
+                model_instance.slot_3_pokemon.delete()
+                model_instance.slot_3_pokemon = None
             return model_instance
 
-        if str(slot) == "4":
-            # none is falsy
-            if not model_instance.slot_4_name:
-                return model_instance
-
-            model_instance.slot_4_name = None
-            model_instance.slot_4_type_primary = None
-            model_instance.slot_4_type_secondary = None
-            model_instance.slot_4_national_dex_id = None
-            model_instance.slot_4_type_species = None
-            model_instance.slot_4_type_height = None
-            model_instance.slot_4_type_weight = None
-            model_instance.slot_4_type_move_1 = None
-            model_instance.slot_4_type_move_2 = None
-            model_instance.slot_4_type_move_3 = None
-            model_instance.slot_4_type_move_4 = None
+        elif str(slot) == "4":
+            if model_instance.slot_4_pokemon:
+                model_instance.slot_4_pokemon.delete()
+                model_instance.slot_4_pokemon = None
             return model_instance
 
-        if str(slot) == "5":
-            # none is falsy
-            if not model_instance.slot_5_name:
-                return model_instance
-
-            model_instance.slot_5_name = None
-            model_instance.slot_5_type_primary = None
-            model_instance.slot_5_type_secondary = None
-            model_instance.slot_5_national_dex_id = None
-            model_instance.slot_5_type_species = None
-            model_instance.slot_5_type_height = None
-            model_instance.slot_5_type_weight = None
-            model_instance.slot_5_type_move_1 = None
-            model_instance.slot_5_type_move_2 = None
-            model_instance.slot_5_type_move_3 = None
-            model_instance.slot_5_type_move_4 = None
+        elif str(slot) == "5":
+            if model_instance.slot_5_pokemon:
+                model_instance.slot_5_pokemon.delete()
+                model_instance.slot_5_pokemon = None
             return model_instance
 
-        if str(slot) == "6":
-            # none is falsy
-            if not model_instance.slot_6_name:
-                return model_instance
-
-            model_instance.slot_6_name = None
-            model_instance.slot_6_type_primary = None
-            model_instance.slot_6_type_secondary = None
-            model_instance.slot_6_national_dex_id = None
-            model_instance.slot_6_type_species = None
-            model_instance.slot_6_type_height = None
-            model_instance.slot_6_type_weight = None
-            model_instance.slot_6_type_move_1 = None
-            model_instance.slot_6_type_move_2 = None
-            model_instance.slot_6_type_move_3 = None
-            model_instance.slot_6_type_move_4 = None
+        elif str(slot) == "6":
+            if model_instance.slot_6_pokemon:
+                model_instance.slot_6_pokemon.delete()
+                model_instance.slot_6_pokemon = None
             return model_instance
 
         return model_instance
@@ -179,13 +113,13 @@ class AddPokemonToTeam(APIView):
         except ObjectDoesNotExist as _e:
             print(_e)
             return Response("Team not found", status=status.HTTP_404_NOT_FOUND)
-        pokemon = pb.pokemon(request.data.get("pokemon_name").lower())
+        api_pokemon = pb.pokemon(request.data.get("pokemon_name").lower())
 
-        if not pokemon.id_:
+        if not api_pokemon.id_:
             return Response("This pokemon doesn't exist", status=status.HTTP_404_NOT_FOUND)
 
         try:
-            team = self._add_to_slot(team, pokemon, request.data.get("slot"))
+            team = self._add_to_slot(team, api_pokemon, request.data.get("slot"))
         except IndexError as _e:
             print(_e)
 
@@ -193,128 +127,80 @@ class AddPokemonToTeam(APIView):
         serializer = GetUpdateDestroyTeamSerializer(team)
         if serializer.is_valid:
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def _add_to_slot(self, model_instance, pokemon, slot):
+    def _add_to_slot(self, model_instance, api_pokemon, slot):
         """
         This auxiliary method adds the corresponding pokemon to the correct slot. It requires:
         an instance of the model, an instance of the retrieved pokemon and the slot number
         as a string (as it came straight from the request object). Returns the updated instance
-        of the model.
+        of the model. If the slot is already filled in, the pokemon will be deleted from db.
         """
+        model_pokemon = Pokemon.objects.create(
+            team_id=model_instance,
+            national_dex_id=api_pokemon.id,
+            name=api_pokemon.name,
+            species=api_pokemon.species,
+            height=api_pokemon.height,
+            weight=api_pokemon.weight,
+            move_1=random.choice(api_pokemon.moves).move.name,
+            move_2=random.choice(api_pokemon.moves).move.name,
+            move_3=random.choice(api_pokemon.moves).move.name,
+            move_4=random.choice(api_pokemon.moves).move.name
+        )
+        if len(api_pokemon.types) < 2:
+            model_pokemon.type_primary = api_pokemon.types[0].type.name
+        else:
+            model_pokemon.type_primary = api_pokemon.types[0].type.name
+            model_pokemon.type_secondary = api_pokemon.types[1].type.name
+
         if str(slot) == "1":
-            model_instance.slot_1_name = pokemon.name
-
-            if len(pokemon.types) < 2:
-                model_instance.slot_1_type_primary = pokemon.types[0].type.name
-            else:
-                model_instance.slot_1_type_primary = pokemon.types[0].type.name
-                model_instance.slot_1_type_secondary = pokemon.types[1].type.name
-
-            model_instance.slot_1_national_dex_id = pokemon.id
-            model_instance.slot_1_type_species = pokemon.species
-            model_instance.slot_1_type_height = pokemon.height
-            model_instance.slot_1_type_weight = pokemon.weight
-            model_instance.slot_1_type_move_1 = random.choice(pokemon.moves).move.name
-            model_instance.slot_1_type_move_2 = random.choice(pokemon.moves).move.name
-            model_instance.slot_1_type_move_3 = random.choice(pokemon.moves).move.name
-            model_instance.slot_1_type_move_4 = random.choice(pokemon.moves).move.name
+            # gotta delete the pokemon if it already exists to avoid orphaned entities
+            if model_instance.slot_1_pokemon:
+                model_instance.slot_1_pokemon.delete()
+            model_pokemon.save()
+            model_instance.slot_1_pokemon = model_pokemon
             return model_instance
 
         if str(slot) == "2":
-            model_instance.slot_2_name = pokemon.name
-
-            if len(pokemon.types) < 2:
-                model_instance.slot_2_type_primary = pokemon.types[0].type.name
-            else:
-                model_instance.slot_2_type_primary = pokemon.types[0].type.name
-                model_instance.slot_2_type_secondary = pokemon.types[1].type.name
-
-            model_instance.slot_2_national_dex_id = pokemon.id
-            model_instance.slot_2_type_species = pokemon.species
-            model_instance.slot_2_type_height = pokemon.height
-            model_instance.slot_2_type_weight = pokemon.weight
-            model_instance.slot_2_type_move_1 = random.choice(pokemon.moves).move.name
-            model_instance.slot_2_type_move_2 = random.choice(pokemon.moves).move.name
-            model_instance.slot_2_type_move_3 = random.choice(pokemon.moves).move.name
-            model_instance.slot_2_type_move_4 = random.choice(pokemon.moves).move.name
+            # gotta delete the pokemon if it already exists to avoid orphaned entities
+            if model_instance.slot_2_pokemon:
+                model_instance.slot_2_pokemon.delete()
+            model_pokemon.save()
+            model_instance.slot_2_pokemon = model_pokemon
             return model_instance
 
         if str(slot) == "3":
-            model_instance.slot_3_name = pokemon.name
-
-            if len(pokemon.types) < 2:
-                model_instance.slot_3_type_primary = pokemon.types[0].type.name
-            else:
-                model_instance.slot_3_type_primary = pokemon.types[0].type.name
-                model_instance.slot_3_type_secondary = pokemon.types[1].type.name
-
-            model_instance.slot_3_national_dex_id = pokemon.id
-            model_instance.slot_3_type_species = pokemon.species
-            model_instance.slot_3_type_height = pokemon.height
-            model_instance.slot_3_type_weight = pokemon.weight
-            model_instance.slot_3_type_move_1 = random.choice(pokemon.moves).move.name
-            model_instance.slot_3_type_move_2 = random.choice(pokemon.moves).move.name
-            model_instance.slot_3_type_move_3 = random.choice(pokemon.moves).move.name
-            model_instance.slot_3_type_move_4 = random.choice(pokemon.moves).move.name
+            # gotta delete the pokemon if it already exists to avoid orphaned entities
+            if model_instance.slot_3_pokemon:
+                model_instance.slot_3_pokemon.delete()
+            model_pokemon.save()
+            model_instance.slot_3_pokemon = model_pokemon
             return model_instance
 
         if str(slot) == "4":
-            model_instance.slot_4_name = pokemon.name
-
-            if len(pokemon.types) < 2:
-                model_instance.slot_4_type_primary = pokemon.types[0].type.name
-            else:
-                model_instance.slot_4_type_primary = pokemon.types[0].type.name
-                model_instance.slot_4_type_secondary = pokemon.types[1].type.name
-
-            model_instance.slot_4_national_dex_id = pokemon.id
-            model_instance.slot_4_type_species = pokemon.species
-            model_instance.slot_4_type_height = pokemon.height
-            model_instance.slot_4_type_weight = pokemon.weight
-            model_instance.slot_4_type_move_1 = random.choice(pokemon.moves).move.name
-            model_instance.slot_4_type_move_2 = random.choice(pokemon.moves).move.name
-            model_instance.slot_4_type_move_3 = random.choice(pokemon.moves).move.name
-            model_instance.slot_4_type_move_4 = random.choice(pokemon.moves).move.name
+            # gotta delete the pokemon if it already exists to avoid orphaned entities
+            if model_instance.slot_4_pokemon:
+                model_instance.slot_4_pokemon.delete()
+            model_pokemon.save()
+            model_instance.slot_4_pokemon = model_pokemon
             return model_instance
 
         if str(slot) == "5":
-            model_instance.slot_5_name = pokemon.name
-
-            if len(pokemon.types) < 2:
-                model_instance.slot_5_type_primary = pokemon.types[0].type.name
-            else:
-                model_instance.slot_5_type_primary = pokemon.types[0].type.name
-                model_instance.slot_5_type_secondary = pokemon.types[1].type.name
-
-            model_instance.slot_5_national_dex_id = pokemon.id
-            model_instance.slot_5_type_species = pokemon.species
-            model_instance.slot_5_type_height = pokemon.height
-            model_instance.slot_5_type_weight = pokemon.weight
-            model_instance.slot_5_type_move_1 = random.choice(pokemon.moves).move.name
-            model_instance.slot_5_type_move_2 = random.choice(pokemon.moves).move.name
-            model_instance.slot_5_type_move_3 = random.choice(pokemon.moves).move.name
-            model_instance.slot_5_type_move_4 = random.choice(pokemon.moves).move.name
+            # gotta delete the pokemon if it already exists to avoid orphaned entities
+            if model_instance.slot_5_pokemon:
+                model_instance.slot_5_pokemon.delete()
+            model_pokemon.save()
+            model_instance.slot_5_pokemon = model_pokemon
             return model_instance
 
         if str(slot) == "6":
-            model_instance.slot_6_name = pokemon.name
-
-            if len(pokemon.types) < 2:
-                model_instance.slot_6_type_primary = pokemon.types[0].type.name
-            else:
-                model_instance.slot_6_type_primary = pokemon.types[0].type.name
-                model_instance.slot_6_type_secondary = pokemon.types[1].type.name
-
-            model_instance.slot_6_national_dex_id = pokemon.id
-            model_instance.slot_6_type_species = pokemon.species
-            model_instance.slot_6_type_height = pokemon.height
-            model_instance.slot_6_type_weight = pokemon.weight
-            model_instance.slot_6_type_move_1 = random.choice(pokemon.moves).move.name
-            model_instance.slot_6_type_move_2 = random.choice(pokemon.moves).move.name
-            model_instance.slot_6_type_move_3 = random.choice(pokemon.moves).move.name
-            model_instance.slot_6_type_move_4 = random.choice(pokemon.moves).move.name
+            # gotta delete the pokemon if it already exists to avoid orphaned entities
+            if model_instance.slot_6_pokemon:
+                model_instance.slot_6_pokemon.delete()
+            model_pokemon.save()
+            model_instance.slot_6_pokemon = model_pokemon
             return model_instance
 
         raise IndexError("Slot can only be between 1 and 6")

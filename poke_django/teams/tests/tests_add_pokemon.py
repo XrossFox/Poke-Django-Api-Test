@@ -42,10 +42,10 @@ class TeamAddPokemonTestCase(TestCase):
 
         self.assertEqual(response.status_code, 201)
         poke = Team.objects.get(pk=team_pk)
-        self.assertEqual(poke.slot_1_national_dex_id, national_dex_id)
-        self.assertEqual(poke.slot_1_name, pokemon_name.lower())
-        self.assertEqual(poke.slot_1_type_primary, type_1)
-        self.assertEqual(poke.slot_1_type_secondary, type_2)
+        self.assertEqual(poke.slot_1_pokemon.national_dex_id, national_dex_id)
+        self.assertEqual(poke.slot_1_pokemon.name, pokemon_name.lower())
+        self.assertEqual(poke.slot_1_pokemon.type_primary, type_1)
+        self.assertEqual(poke.slot_1_pokemon.type_secondary, type_2)
 
     def test_add_pokemon_slot_1_2_type(self):
         """
@@ -70,10 +70,10 @@ class TeamAddPokemonTestCase(TestCase):
 
         self.assertEqual(response.status_code, 201)
         poke = Team.objects.get(pk=team_pk)
-        self.assertEqual(poke.slot_1_national_dex_id, national_dex_id)
-        self.assertEqual(poke.slot_1_name, pokemon_name.lower())
-        self.assertEqual(poke.slot_1_type_primary, type_1)
-        self.assertEqual(poke.slot_1_type_secondary, type_2)
+        self.assertEqual(poke.slot_1_pokemon.national_dex_id, national_dex_id)
+        self.assertEqual(poke.slot_1_pokemon.name, pokemon_name.lower())
+        self.assertEqual(poke.slot_1_pokemon.type_primary, type_1)
+        self.assertEqual(poke.slot_1_pokemon.type_secondary, type_2)
 
     def test_add_pokemon_slot_1_not_exist(self):
         """
@@ -118,10 +118,10 @@ class TeamAddPokemonTestCase(TestCase):
 
         self.assertEqual(response.status_code, 201)
         poke = Team.objects.get(pk=team_pk)
-        self.assertEqual(poke.slot_2_national_dex_id, national_dex_id)
-        self.assertEqual(poke.slot_2_name, pokemon_name.lower())
-        self.assertEqual(poke.slot_2_type_primary, type_1)
-        self.assertEqual(poke.slot_2_type_secondary, type_2)
+        self.assertEqual(poke.slot_2_pokemon.national_dex_id, national_dex_id)
+        self.assertEqual(poke.slot_2_pokemon.name, pokemon_name.lower())
+        self.assertEqual(poke.slot_2_pokemon.type_primary, type_1)
+        self.assertEqual(poke.slot_2_pokemon.type_secondary, type_2)
 
     def test_add_pokemon_slot_2_2_type(self):
         """
@@ -146,10 +146,10 @@ class TeamAddPokemonTestCase(TestCase):
 
         self.assertEqual(response.status_code, 201)
         poke = Team.objects.get(pk=team_pk)
-        self.assertEqual(poke.slot_2_national_dex_id, national_dex_id)
-        self.assertEqual(poke.slot_2_name, pokemon_name.lower())
-        self.assertEqual(poke.slot_2_type_primary, type_1)
-        self.assertEqual(poke.slot_2_type_secondary, type_2)
+        self.assertEqual(poke.slot_2_pokemon.national_dex_id, national_dex_id)
+        self.assertEqual(poke.slot_2_pokemon.name, pokemon_name.lower())
+        self.assertEqual(poke.slot_2_pokemon.type_primary, type_1)
+        self.assertEqual(poke.slot_2_pokemon.type_secondary, type_2)
 
     def test_add_pokemon_slot_2_not_exist(self):
         """
@@ -194,10 +194,10 @@ class TeamAddPokemonTestCase(TestCase):
 
         self.assertEqual(response.status_code, 201)
         poke = Team.objects.get(pk=team_pk)
-        self.assertEqual(poke.slot_3_national_dex_id, national_dex_id)
-        self.assertEqual(poke.slot_3_name, pokemon_name.lower())
-        self.assertEqual(poke.slot_3_type_primary, type_1)
-        self.assertEqual(poke.slot_3_type_secondary, type_2)
+        self.assertEqual(poke.slot_3_pokemon.national_dex_id, national_dex_id)
+        self.assertEqual(poke.slot_3_pokemon.name, pokemon_name.lower())
+        self.assertEqual(poke.slot_3_pokemon.type_primary, type_1)
+        self.assertEqual(poke.slot_3_pokemon.type_secondary, type_2)
 
     def test_add_pokemon_slot_3_2_type(self):
         """
@@ -222,10 +222,10 @@ class TeamAddPokemonTestCase(TestCase):
 
         self.assertEqual(response.status_code, 201)
         poke = Team.objects.get(pk=team_pk)
-        self.assertEqual(poke.slot_3_national_dex_id, national_dex_id)
-        self.assertEqual(poke.slot_3_name, pokemon_name.lower())
-        self.assertEqual(poke.slot_3_type_primary, type_1)
-        self.assertEqual(poke.slot_3_type_secondary, type_2)
+        self.assertEqual(poke.slot_3_pokemon.national_dex_id, national_dex_id)
+        self.assertEqual(poke.slot_3_pokemon.name, pokemon_name.lower())
+        self.assertEqual(poke.slot_3_pokemon.type_primary, type_1)
+        self.assertEqual(poke.slot_3_pokemon.type_secondary, type_2)
 
     def test_add_pokemon_slot_3_not_exist(self):
         """
@@ -270,10 +270,10 @@ class TeamAddPokemonTestCase(TestCase):
 
         self.assertEqual(response.status_code, 201)
         poke = Team.objects.get(pk=team_pk)
-        self.assertEqual(poke.slot_4_national_dex_id, national_dex_id)
-        self.assertEqual(poke.slot_4_name, pokemon_name.lower())
-        self.assertEqual(poke.slot_4_type_primary, type_1)
-        self.assertEqual(poke.slot_4_type_secondary, type_2)
+        self.assertEqual(poke.slot_4_pokemon.national_dex_id, national_dex_id)
+        self.assertEqual(poke.slot_4_pokemon.name, pokemon_name.lower())
+        self.assertEqual(poke.slot_4_pokemon.type_primary, type_1)
+        self.assertEqual(poke.slot_4_pokemon.type_secondary, type_2)
 
     def test_add_pokemon_slot_4_2_type(self):
         """
@@ -298,10 +298,10 @@ class TeamAddPokemonTestCase(TestCase):
 
         self.assertEqual(response.status_code, 201)
         poke = Team.objects.get(pk=team_pk)
-        self.assertEqual(poke.slot_4_national_dex_id, national_dex_id)
-        self.assertEqual(poke.slot_4_name, pokemon_name.lower())
-        self.assertEqual(poke.slot_4_type_primary, type_1)
-        self.assertEqual(poke.slot_4_type_secondary, type_2)
+        self.assertEqual(poke.slot_4_pokemon.national_dex_id, national_dex_id)
+        self.assertEqual(poke.slot_4_pokemon.name, pokemon_name.lower())
+        self.assertEqual(poke.slot_4_pokemon.type_primary, type_1)
+        self.assertEqual(poke.slot_4_pokemon.type_secondary, type_2)
 
     def test_add_pokemon_slot_4_not_exist(self):
         """
@@ -346,10 +346,10 @@ class TeamAddPokemonTestCase(TestCase):
 
         self.assertEqual(response.status_code, 201)
         poke = Team.objects.get(pk=team_pk)
-        self.assertEqual(poke.slot_5_national_dex_id, national_dex_id)
-        self.assertEqual(poke.slot_5_name, pokemon_name.lower())
-        self.assertEqual(poke.slot_5_type_primary, type_1)
-        self.assertEqual(poke.slot_5_type_secondary, type_2)
+        self.assertEqual(poke.slot_5_pokemon.national_dex_id, national_dex_id)
+        self.assertEqual(poke.slot_5_pokemon.name, pokemon_name.lower())
+        self.assertEqual(poke.slot_5_pokemon.type_primary, type_1)
+        self.assertEqual(poke.slot_5_pokemon.type_secondary, type_2)
 
     def test_add_pokemon_slot_5_2_type(self):
         """
@@ -374,10 +374,10 @@ class TeamAddPokemonTestCase(TestCase):
 
         self.assertEqual(response.status_code, 201)
         poke = Team.objects.get(pk=team_pk)
-        self.assertEqual(poke.slot_5_national_dex_id, national_dex_id)
-        self.assertEqual(poke.slot_5_name, pokemon_name.lower())
-        self.assertEqual(poke.slot_5_type_primary, type_1)
-        self.assertEqual(poke.slot_5_type_secondary, type_2)
+        self.assertEqual(poke.slot_5_pokemon.national_dex_id, national_dex_id)
+        self.assertEqual(poke.slot_5_pokemon.name, pokemon_name.lower())
+        self.assertEqual(poke.slot_5_pokemon.type_primary, type_1)
+        self.assertEqual(poke.slot_5_pokemon.type_secondary, type_2)
 
     def test_add_pokemon_slot_5_not_exist(self):
         """
@@ -422,10 +422,10 @@ class TeamAddPokemonTestCase(TestCase):
 
         self.assertEqual(response.status_code, 201)
         poke = Team.objects.get(pk=team_pk)
-        self.assertEqual(poke.slot_6_national_dex_id, national_dex_id)
-        self.assertEqual(poke.slot_6_name, pokemon_name.lower())
-        self.assertEqual(poke.slot_6_type_primary, type_1)
-        self.assertEqual(poke.slot_6_type_secondary, type_2)
+        self.assertEqual(poke.slot_6_pokemon.national_dex_id, national_dex_id)
+        self.assertEqual(poke.slot_6_pokemon.name, pokemon_name.lower())
+        self.assertEqual(poke.slot_6_pokemon.type_primary, type_1)
+        self.assertEqual(poke.slot_6_pokemon.type_secondary, type_2)
 
     def test_add_pokemon_slot_6_2_type(self):
         """
@@ -450,10 +450,10 @@ class TeamAddPokemonTestCase(TestCase):
 
         self.assertEqual(response.status_code, 201)
         poke = Team.objects.get(pk=team_pk)
-        self.assertEqual(poke.slot_6_national_dex_id, national_dex_id)
-        self.assertEqual(poke.slot_6_name, pokemon_name.lower())
-        self.assertEqual(poke.slot_6_type_primary, type_1)
-        self.assertEqual(poke.slot_6_type_secondary, type_2)
+        self.assertEqual(poke.slot_6_pokemon.national_dex_id, national_dex_id)
+        self.assertEqual(poke.slot_6_pokemon.name, pokemon_name.lower())
+        self.assertEqual(poke.slot_6_pokemon.type_primary, type_1)
+        self.assertEqual(poke.slot_6_pokemon.type_secondary, type_2)
 
     def test_add_pokemon_slot_6_not_exist(self):
         """
