@@ -11,7 +11,7 @@ Check https://app.swaggerhub.com/apis/XrossFox/PokeDjango/1.0.0 for more info ab
 - Setup DB credentials in `Settings.py` in DB section.
 - Run migrations: `py manage.py migrate` (make sure the DB exists in MySQL server: `pokemon_trainers`)
 - Run server: `py manage.py runserver`.
-- Hit it with postman or go jumo in with your web browser!
+- Hit it with postman or go jump in with your web browser!
 
 ## Running tests:
 To run the test cases: `py manage.py test <module>.tests`.
